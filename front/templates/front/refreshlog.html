@@ -1,0 +1,65 @@
+{% extends "front/base.html" %}
+{% block content %}
+    <div class="row">
+        <nav class="navbar navbar-form navbar-header navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <a href="#" class="navbar-brand">华为云-自助刷新cdn工具</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'front:work' %}" id="fresh-log" class="cdn">继续提交</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'front:logout' %}">退出系统</a></li>
+                    <li><a href="{% url 'front:connect_admin' %}">联系管理员</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="clearfix"></div>
+        <div style="margin-top: 60px;">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <table class="table table-hover  table-bordered text-center">
+                    <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>云平台</td>
+                        <td>url</td>
+                        <td>提交时间</td>
+                        <td>状态</td>
+                    </tr>
+                    {% for v in log %}
+                        <tr>
+                            <td>{{ v.id }}</td>
+                            <td>{{ v.cate }}</td>
+                            <td>{{ v.url }}</td>
+                            <td>{{ v.freshtime }}</td>
+                            <td>{{ v.state }}</td>
+                        </tr>
+                    {% endfor %}
+                    </thead>
+                </table>
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="{%  url 'front:refresh_log' page=1 %}">首页</a></li>
+                        {% if log.has_previous %}
+                            <li><a href="{%  url 'front:refresh_log' page=log.previous_page_number %}">上一页</a></li>
+                        {% else %}
+                            <li class="disabled" style="color: #ff0000"><a href="#">上一页</a></li>
+                        {% endif %}
+                        <li class="disabled" style="color: #ff0000"><a href="{%  url 'front:refresh_log' page=log.number %}" >{{ log.number }} of {{ log.paginator.num_pages }}</a></li>
+                        {% if log.has_next %}
+                            <li><a href="{%  url 'front:refresh_log' page=log.next_page_number %}">下一页</a></li>
+                        {% else %}
+                            <li class="disabled" style="color: #ff0000"><a href="#">下一页</a></li>
+                        {% endif %}
+                        <li><a href="{%  url 'front:refresh_log' page=log.paginator.num_pages %}">尾页</a></li>
+                    </ul>
+                    <p>第{{ log.number }}页，共{{ log.paginator.num_pages }}页</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/my.js' %}"></script>
+{% endblock %}

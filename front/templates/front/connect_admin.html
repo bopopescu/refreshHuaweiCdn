@@ -1,0 +1,29 @@
+{% extends "front/base.html" %}
+{% block content %}
+    <div class="row">
+        <nav class="navbar navbar-form navbar-header navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <a href="#" class="navbar-brand">华为云-自助刷新cdn工具</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'front:work' %}" id="fresh-log" class="cdn">继续提交</a></li>
+                    <li><a href="{% url 'front:refresh_log' page=1 %}" id="fresh-log" class="cdn">操作记录</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'front:logout' %}">退出系统</a></li>
+{#                    <li><a href="#">联系管理员</a></li>#}
+                </ul>
+            </div>
+        </nav>
+        <div class="clearfix"></div>
+        <div style="margin-top: 60px;">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/my.js' %}"></script>
+{% endblock %}

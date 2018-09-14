@@ -1,0 +1,54 @@
+{% extends "front/base.html" %}
+{% block content %}
+    <div class="row">
+        <nav class="navbar navbar-form navbar-header navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <a href="#" class="navbar-brand">华为云-自助刷新cdn工具</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'front:refresh_log' page=1 %}" id="fresh-log" class="cdn">操作记录</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'front:login' %}">退出系统</a></li>
+                    <li><a href="{% url 'front:connect_admin' %}">联系管理员</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="clearfix"></div>
+        <div style="margin-top: 60px;">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <form action="" method="post">
+                    <h4 class="text-center">请输入需要的文件或目录的URL，<strong>一行一个，回车换行，</strong>目录请以'/'结尾，生效时间在5-10分钟</h4>
+                    {% for msg in messages %}
+                        {% if msg.tags == "error" %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> 提交失败</h4>
+                                {{ msg }}
+                            </div>
+                        {% endif %}
+                        {% if msg.tags == "success" %}
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> 提交成功</h4>
+                                {{ msg }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% csrf_token %}
+                    {{ form.content }}
+                    <div class="form-group text-center">
+                        {{ form.fresh_type }}
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="提交并刷新" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/my.js' %}"></script>
+{% endblock %}
