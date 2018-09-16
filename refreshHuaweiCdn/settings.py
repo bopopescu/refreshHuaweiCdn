@@ -76,10 +76,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'refreshCdn',
-        'USER': 'yunwei',
-        'HOST': 'rdscgr8jgm7567za81hpo.mysql.rds.aliyuncs.com',
+        'USER': '',
+        'HOST': '127.0.0.1',
         'PORT': '',
-        'PASSWORD': 'yunwei@1234',
+        'PASSWORD': '',
     }
 }
 
