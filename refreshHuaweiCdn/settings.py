@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ait!^93-j#u_q*9lhdr$j+owm2*an4nle29vt=!wmhldqyhv)('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -76,10 +76,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'refreshCdn',
-        'USER': 'root',
-        'HOST': '127.0.0.1',
+        'USER': 'yunwei',
+        'HOST': 'rdscgr8jgm7567za81hpo.mysql.rds.aliyuncs.com',
         'PORT': '',
-        'PASSWORD': '',
+        'PASSWORD': 'yunwei@1234',
     }
 }
 
@@ -104,8 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'zh_Hans'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Shanghai'
@@ -120,9 +120,12 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/data/apache/www/huaweicloud/refreshHuaweiCdn/static'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
 LOGIN_URL = '/login/'
+
+#SESSION_EXPIRE_AT_BROWSER_CLOSE = True

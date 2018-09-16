@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 # coding=utf-8
 import os
 import sys
@@ -17,51 +18,31 @@ userDomainId = "7f00129fc7bd4ec38e3a91db84f2bb38"
 auth_url = "https://iam.cn-north-1.myhuaweicloud.com/v3"
 
 conn = connection.Connection(
-    auth_url=auth_url,
-    user_domain_id=userDomainId,
-    project_id=projectId,
-    username=username,
-    password=password
+	auth_url=auth_url,
+	user_domain_id=userDomainId,
+	project_id=projectId,
+	username=username,
+	password=password
 )
 
 
 def refreshTask(refreshTask):
-    # print("refresh files or dirs:")
-    refreshtask = conn.cdn.create_refresh_task(**refreshTask)
-    # print(refreshtask)
-    # print(refreshtask.id)
-    return refreshtask
-
-
-def queryTask():
-    print("query tasks by time:")
-    now = time.time()
-    end_date = int(now * 1000)
-    start_date = end_date - 3600 * 1000
-    tasks = conn.cdn.tasks(page_size=100, page_number=1, start_date=start_date, end_date=end_date)
-    task_list = list(tasks)
-    print(task_list)
-
-    print("\nquery task detail by id:")
-    task_id = 'ff80808265d1443d0165d68ab5e66955'
-    #	task_id = task_list[0].id
-    # for v in task_list:
-    #	task_id = v.id
-    #	task_detail = conn.cdn.get_task(task_id)
-    #	print(task_detail)
-    task_detail = conn.cdn.get_task(task_id)
-    print(task_detail)
+	refreshtask = conn.cdn.create_refresh_task(**refreshTask)
+	#print(refreshtask)
+	#print(type(refreshtask))
+	print(refreshtask.id)
+	return refreshtask
 
 
 if __name__ == "__main__":
-    refreshFileTask = {
-        "type": "file",
-        "urls": ["http://cdn.bfsg.leduimg.com.cn/8888820180423125940/media/icon/propicon/3099011.png",
-                 "http://cdn.bfsg.leduimg.com/20180423125940/media/icon/propicon/3099011.png"]
-    }
-    try:
-        refreshTask(refreshFileTask)
-    except Exception as e:
-        print("域名输入错误!")
+	try:
+		file_type = sys.argv[1]
+		url = sys.argv[2]
+		refreshFileTask = {
+			"type": file_type,
+			"urls": [url],
+		}
+		refreshTask(refreshFileTask)
+	except Exception as e:
+		print("error")
 
-        # queryTask()
