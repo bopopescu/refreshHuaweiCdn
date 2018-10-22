@@ -11,10 +11,10 @@ from openstack import utils
 
 os.environ.setdefault('OS_CDN_ENDPOINT_OVERRIDE', 'https://cdn.myhwclouds.com/v1.0')
 
-username = "mujoy_om"
-password = "Lnv(nqzA.s(Wanjg4"
-projectId = "e3ff7da6860b49cfae6060f6f867fe60"
-userDomainId = "7f00129fc7bd4ec38e3a91db84f2bb38"
+username = "your account"
+password = "your password"
+projectId = "projectId"
+userDomainId = "your userId"
 auth_url = "https://iam.cn-north-1.myhuaweicloud.com/v3"
 
 conn = connection.Connection(
